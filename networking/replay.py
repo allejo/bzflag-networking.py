@@ -10,4 +10,4 @@ class Replay:
         self.header = ReplayHeader()
 
     def load_header(self, buf: BinaryIO) -> None:
-        self.header.load(buf)
+        self.header.unpack(buf)
