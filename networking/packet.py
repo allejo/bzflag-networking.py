@@ -1,10 +1,10 @@
 from io import BytesIO, BufferedIOBase
 from typing import BinaryIO, Union
 
-from networking.packable_interface import PackableInterface
+from networking.network_packet import NetworkPacket
 
 
-class Packet(PackableInterface):
+class Packet(NetworkPacket):
     __slots__ = [
         'mode',
         'code',
