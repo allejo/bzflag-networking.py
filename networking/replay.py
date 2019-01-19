@@ -1,13 +1,17 @@
-from typing import BinaryIO
+from typing import BinaryIO, List
 
+from networking.packet import Packet
 from networking.replay_header import ReplayHeader
 
 
 class Replay:
-    __slots__ = ['header']
+    __slots__ = [
+        'header',
+        'packets',
+    ]
 
-    def __init__(self):
-        self.header = ReplayHeader()
+    def __init__(self, buf: BinaryIO):
+        self.header: ReplayHeader = ReplayHeader()
+        self.packets: List[Packet] = []
 
-    def load_header(self, buf: BinaryIO) -> None:
         self.header.unpack(buf)
