@@ -1,21 +1,8 @@
 from typing import List
 
+from networking.game_data_player import PlayerData, IsRegistered, IsVerified, IsAdmin
 from networking.game_packet import GamePacket
 from networking.packet import Packet
-
-
-IsRegistered = 1 << 0
-IsVerified = 1 << 1
-IsAdmin = 1 << 2
-
-
-class PlayerData:
-    __slots__ = (
-        'player_id',
-        'is_registered',
-        'is_verified',
-        'is_admin',
-    )
 
 
 class MsgPlayerInfoPacket(GamePacket):
