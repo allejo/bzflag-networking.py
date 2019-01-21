@@ -15,13 +15,14 @@ class Replay(JsonSerializable):
         'errors',
     ]
 
-    def __init__(self, buf: BinaryIO):
+    def __init__(self, file: str):
         self.header: ReplayHeader = ReplayHeader()
         self.packets: List[GamePacket] = []
         self.errors: List[str] = []
 
-        self.header.unpack(buf)
-        self._load_packets(buf)
+        with open(file, 'rb') as replay_file:
+            self.header.unpack(replay_file)
+            self._load_packets(replay_file)
 
     def _load_packets(self, buf: BinaryIO):
         # We've loaded the replay header already, so let's save the current
@@ -37,10 +38,9 @@ class Replay(JsonSerializable):
 
         while True:
             packet = Packet()
+            packet.unpack(buf)
 
             try:
-                packet.unpack(buf)
-
                 msg_code = NetworkMessage(packet.code)
                 game_packet = GamePacketMap[msg_code]
                 game_packet.packet = packet
