@@ -1,5 +1,3 @@
-from io import BytesIO
-
 from networking.game_packet import GamePacket
 from networking.network_protocol import NetworkProtocol
 from networking.packet import Packet

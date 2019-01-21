@@ -1,4 +1,3 @@
-from io import BytesIO
 from typing import List
 
 from networking.game_packet import GamePacket
