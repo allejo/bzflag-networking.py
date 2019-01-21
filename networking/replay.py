@@ -11,11 +11,13 @@ class Replay:
     __slots__ = [
         'header',
         'packets',
+        'errors',
     ]
 
     def __init__(self, buf: BinaryIO):
         self.header: ReplayHeader = ReplayHeader()
         self.packets: List[GamePacket] = []
+        self.errors: List[str] = []
 
         self.header.unpack(buf)
         self._load_packets(buf)
@@ -46,7 +48,7 @@ class Replay:
                 self.packets.append(game_packet)
             except KeyError:
                 game_code: str = chars_from_code(packet.code)
-                print(f'Unsupported game packet code: {game_code}')
+                self.errors.append(f'Unsupported game packet code: {game_code}')
 
             # We've reached the end of the replay
             if buf.tell() == file_size:
