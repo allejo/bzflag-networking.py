@@ -18,6 +18,7 @@ from networking.msg_player_update import MsgPlayerUpdatePacket
 from networking.msg_remove_player import MsgRemovePlayerPacket
 from networking.msg_score import MsgScorePacket
 from networking.msg_score_over import MsgScoreOverPacket
+from networking.msg_set_var import MsgSetVarPacket
 from networking.network_message import NetworkMessage
 
 
@@ -40,4 +41,5 @@ GamePacketMap: Dict[NetworkMessage, GamePacket] = {
     NetworkMessage.RemovePlayer: MsgRemovePlayerPacket(),
     NetworkMessage.Score: MsgScorePacket(),
     NetworkMessage.ScoreOver: MsgScoreOverPacket(),
+    NetworkMessage.SetVar: MsgSetVarPacket(),
 }
