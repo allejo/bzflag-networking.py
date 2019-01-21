@@ -106,7 +106,12 @@ class Packet(NetworkPacket):
 
     @staticmethod
     def unpack_float(buf: BinaryIO) -> float:
-        return struct.unpack('>f', buf.read(4))[0]
+        val: bytes = buf.read(4)
+
+        if not val:
+            return 0.0
+
+        return struct.unpack('>f', val)[0]
 
     @staticmethod
     def unpack_vector(buf: BinaryIO) -> Vector3F:
