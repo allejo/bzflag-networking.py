@@ -9,6 +9,7 @@ from networking.msg_drop_flag import MsgDropFlagPacket
 from networking.msg_flag_grab import MsgGrabFlagPacket
 from networking.msg_flag_update import MsgFlagUpdatePacket
 from networking.msg_gm_update import MsgGMUpdatePacket
+from networking.msg_killed import MsgKilledPacket
 from networking.network_message import NetworkMessage
 
 
@@ -21,4 +22,5 @@ GamePacketMap: Dict[NetworkMessage, GamePacket] = {
     NetworkMessage.GrabFlag: MsgGrabFlagPacket(),
     NetworkMessage.FlagUpdate: MsgFlagUpdatePacket(),
     NetworkMessage.GMUpdate: MsgGMUpdatePacket(),
+    NetworkMessage.Killed: MsgKilledPacket(),
 }
