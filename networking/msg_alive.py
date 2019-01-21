@@ -20,9 +20,7 @@ class MsgAlivePacket(GamePacket):
         self.position: Vector3F = [0, 0, 0]
         self.azimuth: float = 0.0
 
-    def from_packet(self, packet: Packet):
-        data = BytesIO(packet.data)
-
-        self.player_id = Packet.unpack_uint8(data)
-        self.position = Packet.unpack_vector(data)
-        self.azimuth = Packet.unpack_float(data)
+    def _unpack(self):
+        self.player_id = Packet.unpack_uint8(self.buffer)
+        self.position = Packet.unpack_vector(self.buffer)
+        self.azimuth = Packet.unpack_float(self.buffer)

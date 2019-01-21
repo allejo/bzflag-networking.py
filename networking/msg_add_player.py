@@ -40,15 +40,13 @@ class MsgAddPlayerPacket(GamePacket):
         self.callsign: str = ''
         self.motto: str = ''
 
-    def from_packet(self, packet: Packet):
-        data = BytesIO(packet.data)
+    def _unpack(self):
+        self.player_index = Packet.unpack_uint8(self.buffer)
+        self.player_type = Packet.unpack_uint16(self.buffer)
+        self.team_value = Packet.unpack_uint16(self.buffer)
+        self.score.wins = Packet.unpack_uint16(self.buffer)
+        self.score.losses = Packet.unpack_uint16(self.buffer)
+        self.score.team_kills = Packet.unpack_uint16(self.buffer)
 
-        self.player_index = Packet.unpack_uint8(data)
-        self.player_type = Packet.unpack_uint16(data)
-        self.team_value = Packet.unpack_uint16(data)
-        self.score.wins = Packet.unpack_uint16(data)
-        self.score.losses = Packet.unpack_uint16(data)
-        self.score.team_kills = Packet.unpack_uint16(data)
-
-        self.callsign = Packet.unpack_string(data, NetworkProtocol.CALLSIGN_LEN)
-        self.motto = Packet.unpack_string(data, NetworkProtocol.MOTTO_LEN)
+        self.callsign = Packet.unpack_string(self.buffer, NetworkProtocol.CALLSIGN_LEN)
+        self.motto = Packet.unpack_string(self.buffer, NetworkProtocol.MOTTO_LEN)

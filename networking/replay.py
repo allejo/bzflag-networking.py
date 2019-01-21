@@ -28,7 +28,8 @@ class Replay:
             try:
                 msg_code = NetworkMessage(packet.code)
                 game_packet = GamePacketMap[msg_code]
-                game_packet.from_packet(packet)
+                game_packet.packet = packet
+                game_packet.build()
 
                 self.packets.append(game_packet)
             except KeyError:

@@ -21,15 +21,14 @@ class MsgAdminInfoPacket(GamePacket):
         self.type: str = 'MsgAdminInfo'
         self.players: List[PlayerInfo] = []
 
-    def from_packet(self, packet: Packet):
-        data = BytesIO(packet.data)
-        count: int = Packet.unpack_uint8(data)
+    def _unpack(self):
+        count: int = Packet.unpack_uint8(self.buffer)
 
         for i in range(0, count):
-            Packet.unpack_uint8(data)
+            Packet.unpack_uint8(self.buffer)
 
             p_info: PlayerInfo = PlayerInfo()
-            p_info.player_index = Packet.unpack_uint8(data)
-            p_info.ip_address = Packet.unpack_ip_address(data)
+            p_info.player_index = Packet.unpack_uint8(self.buffer)
+            p_info.ip_address = Packet.unpack_ip_address(self.buffer)
 
             self.players.append(p_info)
