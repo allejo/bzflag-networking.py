@@ -1,6 +1,6 @@
 from typing import BinaryIO
 
 
-class NetworkPacket:
+class Unpackable:
     def unpack(self, buf: BinaryIO) -> None:
         raise NotImplementedError()

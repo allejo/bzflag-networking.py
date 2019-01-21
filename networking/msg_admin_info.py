@@ -1,12 +1,8 @@
 from typing import List
 
+from networking.game_data_player_info import PlayerInfo
 from networking.game_packet import GamePacket
 from networking.packet import Packet
-
-
-class PlayerInfo:
-    player_index: int = -1
-    ip_address: str = ''
 
 
 class MsgAdminInfoPacket(GamePacket):

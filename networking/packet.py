@@ -10,7 +10,7 @@ from networking.game_data_flag import FlagData
 from networking.game_data_player_state import PlayerStateData, JumpJets, OnDriver, UserInputs, PlaySound
 from networking.game_data_shot import ShotData
 from networking.network_message import NetworkMessage
-from networking.network_packet import NetworkPacket
+from networking.unpackable import Unpackable
 from networking.network_protocol import Vector3F
 
 
@@ -20,7 +20,7 @@ small_max_vel = 0.01 * small_scale
 small_max_ang_vel = 0.001 * small_scale
 
 
-class Packet(NetworkPacket):
+class Packet(Unpackable):
     __slots__ = [
         'mode',
         'code',

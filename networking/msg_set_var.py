@@ -1,14 +1,8 @@
 from typing import List
 
+from networking.game_data_bzdb_setting import BZDBSetting
 from networking.game_packet import GamePacket
 from networking.packet import Packet
-
-
-class BZDBSetting:
-    __slots__ = (
-        'name',
-        'value',
-    )
 
 
 class MsgSetVarPacket(GamePacket):

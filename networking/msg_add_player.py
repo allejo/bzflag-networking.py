@@ -1,14 +1,7 @@
+from networking.game_data_player_score import PlayerScore
 from networking.game_packet import GamePacket
 from networking.network_protocol import NetworkProtocol
 from networking.packet import Packet
-
-
-class PlayerScore:
-    __slots__ = (
-        'wins',
-        'losses',
-        'team_kills',
-    )
 
 
 class MsgAddPlayerPacket(GamePacket):

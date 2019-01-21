@@ -1,16 +1,8 @@
 from typing import List
 
+from networking.game_data_score import ScoreData
 from networking.game_packet import GamePacket
 from networking.packet import Packet
-
-
-class ScoreData:
-    __slots__ = (
-        'player_id',
-        'wins',
-        'losses',
-        'team_kills',
-    )
 
 
 class MsgScorePacket(GamePacket):
