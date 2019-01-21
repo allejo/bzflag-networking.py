@@ -1,3 +1,8 @@
+from typing import Tuple
+
+Vector3F = Tuple[float, float, float]
+
+
 class NetworkProtocol:
     CALLSIGN_LEN = 32
     MOTTO_LEN = 128

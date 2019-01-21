@@ -5,6 +5,7 @@ from io import BytesIO, BufferedIOBase
 from typing import BinaryIO, Union
 
 from networking.network_packet import NetworkPacket
+from networking.network_protocol import Vector3F
 
 
 class Packet(NetworkPacket):
@@ -91,6 +92,18 @@ class Packet(NetworkPacket):
         # Output the IP address as little-endian unsigned long
         #   https://docs.python.org/3/library/struct.html#format-strings
         return socket.inet_ntoa(struct.pack('<L', ip_as_int))
+
+    @staticmethod
+    def unpack_float(buf: BinaryIO) -> float:
+        return struct.unpack('>f', buf.read(4))[0]
+
+    @staticmethod
+    def unpack_vector(buf: BinaryIO) -> Vector3F:
+        return (
+            Packet.unpack_float(buf),
+            Packet.unpack_float(buf),
+            Packet.unpack_float(buf),
+        )
 
     @staticmethod
     def _unpack_int(buf: Union[BinaryIO, BufferedIOBase], size: int, signed: bool = True) -> int:
