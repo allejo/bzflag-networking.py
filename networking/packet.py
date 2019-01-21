@@ -5,6 +5,7 @@ import struct
 from io import BytesIO, BufferedIOBase
 from typing import BinaryIO, Union, Tuple
 
+from networking.game_data_firing_info import FiringInfoData
 from networking.game_data_flag import FlagData
 from networking.game_data_player_state import PlayerStateData, JumpJets, OnDriver, UserInputs, PlaySound
 from networking.game_data_shot import ShotData
@@ -138,6 +139,17 @@ class Packet(NetworkPacket):
         flag.initial_velocity = Packet.unpack_float(buf)
 
         return flag
+
+    @staticmethod
+    def unpack_firing_info(buf: BinaryIO) -> FiringInfoData:
+        data: FiringInfoData = FiringInfoData()
+
+        data.time_sent = Packet.unpack_float(buf)
+        data.shot = Packet.unpack_shot(buf)
+        data.flag = Packet.unpack_string(buf, 2)
+        data.lifetime = Packet.unpack_float(buf)
+
+        return data
 
     @staticmethod
     def unpack_shot(buf: BinaryIO) -> ShotData:
