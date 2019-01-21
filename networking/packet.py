@@ -1,13 +1,22 @@
+import math
 import socket
 import struct
 
 from io import BytesIO, BufferedIOBase
-from typing import BinaryIO, Union
+from typing import BinaryIO, Union, Tuple
 
 from networking.game_data_flag import FlagData
+from networking.game_data_player_state import PlayerStateData, JumpJets, OnDriver, UserInputs, PlaySound
 from networking.game_data_shot import ShotData
+from networking.network_message import NetworkMessage
 from networking.network_packet import NetworkPacket
 from networking.network_protocol import Vector3F
+
+
+small_scale = 32766.0
+small_max_dist = 0.02 * small_scale
+small_max_vel = 0.01 * small_scale
+small_max_ang_vel = 0.001 * small_scale
 
 
 class Packet(NetworkPacket):
@@ -137,6 +146,68 @@ class Packet(NetworkPacket):
         shot.team = Packet.unpack_uint16(buf)
 
         return shot
+
+    @staticmethod
+    def unpack_player_state(buf: BinaryIO, code: int) -> PlayerStateData:
+        # TODO see if `in_order` is necessary of if it can be removed safely
+        in_order: int = Packet.unpack_uint32(buf)
+        in_status: int = Packet.unpack_uint16(buf)
+
+        state = PlayerStateData()
+
+        if code == NetworkMessage.PlayerUpdate:
+            state.position = Packet.unpack_vector(buf)
+            state.velocity = Packet.unpack_vector(buf)
+            state.azimuth = Packet.unpack_float(buf)
+            state.angular_velocity = Packet.unpack_float(buf)
+        else:
+            Int3 = Tuple[int, int, int]
+
+            pos: Int3 = (
+                Packet.unpack_int16(buf),
+                Packet.unpack_int16(buf),
+                Packet.unpack_int16(buf),
+            )
+            vel: Int3 = (
+                Packet.unpack_int16(buf),
+                Packet.unpack_int16(buf),
+                Packet.unpack_int16(buf),
+            )
+            azi: int = Packet.unpack_int16(buf)
+            ang_vel: int = Packet.unpack_int16(buf)
+
+            position = []
+            velocity = []
+
+            for i in range(0, 3):
+                position[i] = (float(pos[i]) * small_max_dist) / small_scale
+                velocity[i] = (float(vel[i]) * small_max_vel) / small_scale
+
+            state.position = tuple(position)
+            state.velocity = tuple(velocity)
+            state.azimuth = (float(azi) * math.pi) / small_scale
+            state.angular_velocity = (float(ang_vel) * small_max_ang_vel) / small_scale
+
+        if in_status & JumpJets != 0:
+            jump_jets = Packet.unpack_uint16(buf)
+            state.jump_jets_scale = float(jump_jets) / small_scale
+
+        if in_status & OnDriver != 0:
+            # TODO this value is being read in as unsigned, but needs to be converted to signed...?
+            # TODO fix this...
+            state.physics_driver = Packet.unpack_uint32(buf)
+
+        if in_status & UserInputs != 0:
+            speed = Packet.unpack_uint16(buf)
+            ang_vel = Packet.unpack_uint16(buf)
+
+            state.user_speed = (float(speed) * small_max_vel) / small_scale
+            state.user_ang_vel = (float(ang_vel) * small_max_ang_vel) / small_scale
+
+        if in_status & PlaySound != 0:
+            state.sounds = Packet.unpack_uint8(buf)
+
+        return state
 
     @staticmethod
     def _unpack_int(buf: Union[BinaryIO, BufferedIOBase], size: int, signed: bool = True) -> int:
