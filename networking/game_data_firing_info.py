@@ -1,9 +1,10 @@
 from typing import Optional
 
+from networking.game_data import GameData
 from networking.game_data_shot import ShotData
 
 
-class FiringInfoData:
+class FiringInfoData(GameData):
     __slots__ = (
         'time_sent',
         'shot',

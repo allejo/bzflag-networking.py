@@ -1,3 +1,4 @@
+from networking.game_data import GameData
 from networking.network_protocol import Vector3F
 
 DeadStatus = 0  # not alive, not paused, etc.
@@ -14,7 +15,7 @@ JumpJets = 1 << 9  # tank has jump jets on
 PlaySound = 1 << 10  # play one or more sounds
 
 
-class PlayerStateData:
+class PlayerStateData(GameData):
     __slots__ = (
         'position',
         'velocity',

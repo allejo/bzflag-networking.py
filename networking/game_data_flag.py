@@ -1,7 +1,8 @@
+from networking.game_data import GameData
 from networking.network_protocol import Vector3F
 
 
-class FlagData:
+class FlagData(GameData):
     __slots__ = (
         'index',
         'abbv',

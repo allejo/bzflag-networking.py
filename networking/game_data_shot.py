@@ -1,7 +1,8 @@
+from networking.game_data import GameData
 from networking.network_protocol import Vector3F
 
 
-class ShotData:
+class ShotData(GameData):
     __slots__ = (
         'player_id',
         'shot_id',

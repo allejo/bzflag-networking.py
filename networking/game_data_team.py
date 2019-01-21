@@ -1,4 +1,7 @@
-class TeamData:
+from networking.game_data import GameData
+
+
+class TeamData(GameData):
     __slots__ = (
         'team',
         'size',

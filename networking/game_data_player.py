@@ -1,9 +1,11 @@
+from networking.game_data import GameData
+
 IsRegistered = 1 << 0
 IsVerified = 1 << 1
 IsAdmin = 1 << 2
 
 
-class PlayerData:
+class PlayerData(GameData):
     __slots__ = (
         'player_id',
         'is_registered',
