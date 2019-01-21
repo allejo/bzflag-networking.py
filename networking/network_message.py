@@ -5,6 +5,10 @@ def code_from_chars(code: str) -> int:
     return int.from_bytes(str.encode(code), byteorder='big')
 
 
+def chars_from_code(chars: int) -> str:
+    return chars.to_bytes(2, byteorder='big').decode('utf-8')
+
+
 class NetworkMessage(Enum):
     Unknown = 0
     Accept = code_from_chars('ac')
