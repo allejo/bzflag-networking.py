@@ -14,6 +14,7 @@ from networking.msg_message import MsgMessagePacket
 from networking.msg_new_rabbit import MsgNewRabbitPacket
 from networking.msg_pause import MsgPausePacket
 from networking.msg_player_info import MsgPlayerInfoPacket
+from networking.msg_player_update import MsgPlayerUpdatePacket
 from networking.network_message import NetworkMessage
 
 
@@ -31,4 +32,5 @@ GamePacketMap: Dict[NetworkMessage, GamePacket] = {
     NetworkMessage.NewRabbit: MsgNewRabbitPacket(),
     NetworkMessage.Pause: MsgPausePacket(),
     NetworkMessage.PlayerInfo: MsgPlayerInfoPacket(),
+    NetworkMessage.PlayerUpdate: MsgPlayerUpdatePacket(),
 }
