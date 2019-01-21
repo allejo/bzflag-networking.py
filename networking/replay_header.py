@@ -1,12 +1,13 @@
 from typing import BinaryIO
 
+from networking.json_serializable import JsonSerializable
 from networking.unpackable import Unpackable
 from networking.network_protocol import NetworkProtocol
 from networking.packet import Packet
 from networking.replay_duration import ReplayDuration
 
 
-class ReplayHeader(Unpackable):
+class ReplayHeader(JsonSerializable, Unpackable):
     __slots__ = (
         'magic_number',
         'version',

@@ -1,10 +1,11 @@
 from io import BytesIO
-from typing import Optional
+from typing import Optional, List
 
+from networking.json_serializable import JsonSerializable
 from networking.packet import Packet
 
 
-class GamePacket:
+class GamePacket(JsonSerializable):
     __slots__ = (
         'packet',
         'buffer',
@@ -14,6 +15,7 @@ class GamePacket:
     def __init__(self):
         self.packet: Optional[Packet] = None
         self.buffer: Optional[BytesIO] = None
+        self.json_ignored: List[str] = ['buffer', 'packet']
 
     def _unpack(self):
         raise NotImplementedError

@@ -1,4 +1,7 @@
-class ReplayDuration:
+from networking.json_serializable import JsonSerializable
+
+
+class ReplayDuration(JsonSerializable):
     __slots__ = [
         'days',
         'hours',

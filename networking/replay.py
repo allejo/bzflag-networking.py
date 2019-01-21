@@ -2,12 +2,13 @@ from typing import BinaryIO, List
 
 from networking.game_packet import GamePacket
 from networking.game_packet_mapping import GamePacketMap
+from networking.json_serializable import JsonSerializable
 from networking.network_message import NetworkMessage, chars_from_code
 from networking.packet import Packet
 from networking.replay_header import ReplayHeader
 
 
-class Replay:
+class Replay(JsonSerializable):
     __slots__ = [
         'header',
         'packets',
