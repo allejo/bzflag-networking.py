@@ -1,3 +1,6 @@
+import socket
+import struct
+
 from io import BytesIO, BufferedIOBase
 from typing import BinaryIO, Union
 
@@ -75,6 +78,19 @@ class Packet(NetworkPacket):
     def unpack_string(buf: BinaryIO, length: int) -> str:
         raw = buf.read(length)
         return raw.strip(b'\x00').decode('utf-8')
+
+    @staticmethod
+    def unpack_ip_address(buf: BinaryIO) -> str:
+        # This byte was reserved for differentiating between IPv4 and IPv6 addresses
+        # However, since BZFlag only supports IPv4, this byte is skipped
+        buf.read(1)
+
+        # IP addresses are stored in network byte order (aka Little Endian)
+        ip_as_int = int.from_bytes(buf.read(4), byteorder='little', signed=False)
+
+        # Output the IP address as little-endian unsigned long
+        #   https://docs.python.org/3/library/struct.html#format-strings
+        return socket.inet_ntoa(struct.pack('<L', ip_as_int))
 
     @staticmethod
     def _unpack_int(buf: Union[BinaryIO, BufferedIOBase], size: int, signed: bool = True) -> int:
