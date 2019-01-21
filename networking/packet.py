@@ -181,8 +181,8 @@ class Packet(NetworkPacket):
             azi: int = Packet.unpack_int16(buf)
             ang_vel: int = Packet.unpack_int16(buf)
 
-            position = []
-            velocity = []
+            position = [0, 0, 0]
+            velocity = [0, 0, 0]
 
             for i in range(0, 3):
                 position[i] = (float(pos[i]) * small_max_dist) / small_scale

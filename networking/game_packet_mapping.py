@@ -33,4 +33,5 @@ GamePacketMap: Dict[NetworkMessage, GamePacket] = {
     NetworkMessage.Pause: MsgPausePacket(),
     NetworkMessage.PlayerInfo: MsgPlayerInfoPacket(),
     NetworkMessage.PlayerUpdate: MsgPlayerUpdatePacket(),
+    NetworkMessage.PlayerUpdateSmall: MsgPlayerUpdatePacket(),
 }
