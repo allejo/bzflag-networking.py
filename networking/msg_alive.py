@@ -1,0 +1,28 @@
+from io import BytesIO
+
+from networking.game_packet import GamePacket
+from networking.network_protocol import Vector3F
+from networking.packet import Packet
+
+
+class MsgAlivePacket(GamePacket):
+    __slots__ = (
+        'player_id',
+        'position',
+        'azimuth',
+    )
+
+    def __init__(self):
+        super().__init__()
+
+        self.type: str = 'MsgAlive'
+        self.player_id: int = -1
+        self.position: Vector3F = [0, 0, 0]
+        self.azimuth: float = 0.0
+
+    def from_packet(self, packet: Packet):
+        data = BytesIO(packet.data)
+
+        self.player_id = Packet.unpack_uint8(data)
+        self.position = Packet.unpack_vector(data)
+        self.azimuth = Packet.unpack_float(data)
