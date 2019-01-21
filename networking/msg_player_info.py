@@ -1,0 +1,46 @@
+from typing import List
+
+from networking.game_packet import GamePacket
+from networking.packet import Packet
+
+
+IsRegistered = 1 << 0
+IsVerified = 1 << 1
+IsAdmin = 1 << 2
+
+
+class PlayerData:
+    __slots__ = (
+        'player_id',
+        'is_registered',
+        'is_verified',
+        'is_admin',
+    )
+
+
+class MsgPlayerInfoPacket(GamePacket):
+    __slots__ = (
+        'players'
+    )
+
+    def __init__(self):
+        super().__init__()
+
+        self.type: str = 'MsgPlayerInfo'
+        self.players: List[PlayerData] = []
+
+    def _unpack(self):
+        count: int = Packet.unpack_uint8(self.buffer)
+
+        for i in range(0, count):
+            player = PlayerData()
+            player.player_id = Packet.unpack_uint8(self.buffer)
+
+            properties: int = Packet.unpack_uint8(self.buffer)
+
+            player.is_registered = properties & IsRegistered == IsRegistered
+            player.is_verified = properties & IsVerified == IsVerified
+            player.is_admin = properties & IsAdmin == IsAdmin
+
+            self.players.append(player)
+
