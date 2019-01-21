@@ -4,6 +4,7 @@ import struct
 from io import BytesIO, BufferedIOBase
 from typing import BinaryIO, Union
 
+from networking.game_data_flag import FlagData
 from networking.network_packet import NetworkPacket
 from networking.network_protocol import Vector3F
 
@@ -104,6 +105,24 @@ class Packet(NetworkPacket):
             Packet.unpack_float(buf),
             Packet.unpack_float(buf),
         )
+
+    @staticmethod
+    def unpack_flag(buf: BinaryIO) -> FlagData:
+        flag = FlagData()
+
+        flag.index = Packet.unpack_uint16(buf)
+        flag.abbv = Packet.unpack_string(buf, 2)
+        flag.status = Packet.unpack_uint16(buf)
+        flag.endurance = Packet.unpack_uint16(buf)
+        flag.owner = Packet.unpack_uint8(buf)
+        flag.position = Packet.unpack_vector(buf)
+        flag.launch_pos = Packet.unpack_vector(buf)
+        flag.landing_pos = Packet.unpack_vector(buf)
+        flag.flight_time = Packet.unpack_float(buf)
+        flag.flight_end = Packet.unpack_float(buf)
+        flag.initial_velocity = Packet.unpack_float(buf)
+
+        return flag
 
     @staticmethod
     def _unpack_int(buf: Union[BinaryIO, BufferedIOBase], size: int, signed: bool = True) -> int:
