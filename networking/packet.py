@@ -5,6 +5,7 @@ from io import BytesIO, BufferedIOBase
 from typing import BinaryIO, Union
 
 from networking.game_data_flag import FlagData
+from networking.game_data_shot import ShotData
 from networking.network_packet import NetworkPacket
 from networking.network_protocol import Vector3F
 
@@ -123,6 +124,19 @@ class Packet(NetworkPacket):
         flag.initial_velocity = Packet.unpack_float(buf)
 
         return flag
+
+    @staticmethod
+    def unpack_shot(buf: BinaryIO) -> ShotData:
+        shot = ShotData()
+
+        shot.player_id = Packet.unpack_uint8(buf)
+        shot.shot_id = Packet.unpack_uint16(buf)
+        shot.position = Packet.unpack_vector(buf)
+        shot.velocity = Packet.unpack_vector(buf)
+        shot.delta_time = Packet.unpack_float(buf)
+        shot.team = Packet.unpack_uint16(buf)
+
+        return shot
 
     @staticmethod
     def _unpack_int(buf: Union[BinaryIO, BufferedIOBase], size: int, signed: bool = True) -> int:
