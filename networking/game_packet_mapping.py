@@ -8,10 +8,12 @@ from networking.msg_capture_flag import MsgCaptureFlagPacket
 from networking.msg_drop_flag import MsgDropFlagPacket
 from networking.msg_flag_grab import MsgGrabFlagPacket
 from networking.msg_flag_update import MsgFlagUpdatePacket
+from networking.msg_game_time import MsgGameTimePacket
 from networking.msg_gm_update import MsgGMUpdatePacket
 from networking.msg_killed import MsgKilledPacket
 from networking.msg_message import MsgMessagePacket
 from networking.msg_new_rabbit import MsgNewRabbitPacket
+from networking.msg_null import MsgNullPacket
 from networking.msg_pause import MsgPausePacket
 from networking.msg_player_info import MsgPlayerInfoPacket
 from networking.msg_player_update import MsgPlayerUpdatePacket
@@ -29,6 +31,7 @@ from networking.network_message import NetworkMessage
 
 
 GamePacketMap: Dict[NetworkMessage, GamePacket] = {
+    NetworkMessage.Null: MsgNullPacket(),
     NetworkMessage.AddPlayer: MsgAddPlayerPacket(),
     NetworkMessage.AdminInfo: MsgAdminInfoPacket(),
     NetworkMessage.Alive: MsgAlivePacket(),
@@ -36,6 +39,7 @@ GamePacketMap: Dict[NetworkMessage, GamePacket] = {
     NetworkMessage.DropFlag: MsgDropFlagPacket(),
     NetworkMessage.GrabFlag: MsgGrabFlagPacket(),
     NetworkMessage.FlagUpdate: MsgFlagUpdatePacket(),
+    NetworkMessage.GameTime: MsgGameTimePacket(),
     NetworkMessage.GMUpdate: MsgGMUpdatePacket(),
     NetworkMessage.Killed: MsgKilledPacket(),
     NetworkMessage.Message: MsgMessagePacket(),

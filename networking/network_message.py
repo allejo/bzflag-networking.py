@@ -10,7 +10,7 @@ def chars_from_code(chars: int) -> str:
 
 
 class NetworkMessage(Enum):
-    Unknown = 0
+    Null = 0
     Accept = code_from_chars('ac')
     AdminInfo = code_from_chars('ai')
     Alive = code_from_chars('al')
