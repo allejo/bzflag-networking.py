@@ -7,7 +7,7 @@ from networking.packet import Packet
 
 class MsgFlagUpdatePacket(GamePacket):
     __slots__ = (
-        'flags'
+        'flags',
     )
 
     def __init__(self):

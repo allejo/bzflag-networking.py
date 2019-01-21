@@ -7,7 +7,7 @@ from networking.packet import Packet
 
 class MsgPlayerInfoPacket(GamePacket):
     __slots__ = (
-        'players'
+        'players',
     )
 
     def __init__(self):
