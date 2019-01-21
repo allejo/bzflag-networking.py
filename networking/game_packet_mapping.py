@@ -15,6 +15,9 @@ from networking.msg_new_rabbit import MsgNewRabbitPacket
 from networking.msg_pause import MsgPausePacket
 from networking.msg_player_info import MsgPlayerInfoPacket
 from networking.msg_player_update import MsgPlayerUpdatePacket
+from networking.msg_remove_player import MsgRemovePlayerPacket
+from networking.msg_score import MsgScorePacket
+from networking.msg_score_over import MsgScoreOverPacket
 from networking.network_message import NetworkMessage
 
 
@@ -34,4 +37,7 @@ GamePacketMap: Dict[NetworkMessage, GamePacket] = {
     NetworkMessage.PlayerInfo: MsgPlayerInfoPacket(),
     NetworkMessage.PlayerUpdate: MsgPlayerUpdatePacket(),
     NetworkMessage.PlayerUpdateSmall: MsgPlayerUpdatePacket(),
+    NetworkMessage.RemovePlayer: MsgRemovePlayerPacket(),
+    NetworkMessage.Score: MsgScorePacket(),
+    NetworkMessage.ScoreOver: MsgScoreOverPacket(),
 }
