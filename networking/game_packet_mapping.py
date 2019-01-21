@@ -21,6 +21,10 @@ from networking.msg_score_over import MsgScoreOverPacket
 from networking.msg_set_var import MsgSetVarPacket
 from networking.msg_shot_begin import MsgShotBeginPacket
 from networking.msg_shot_end import MsgShotEndPacket
+from networking.msg_team_update import MsgTeamUpdatePacket
+from networking.msg_teleport import MsgTeleportPacket
+from networking.msg_time_update import MsgTimeUpdatePacket
+from networking.msg_transfer_flag import MsgTransferFlagPacket
 from networking.network_message import NetworkMessage
 
 
@@ -46,4 +50,8 @@ GamePacketMap: Dict[NetworkMessage, GamePacket] = {
     NetworkMessage.SetVar: MsgSetVarPacket(),
     NetworkMessage.ShotBegin: MsgShotBeginPacket(),
     NetworkMessage.ShotEnd: MsgShotEndPacket(),
+    NetworkMessage.TeamUpdate: MsgTeamUpdatePacket(),
+    NetworkMessage.Teleport: MsgTeleportPacket(),
+    NetworkMessage.TimeUpdate: MsgTimeUpdatePacket(),
+    NetworkMessage.TransferFlag: MsgTransferFlagPacket(),
 }
