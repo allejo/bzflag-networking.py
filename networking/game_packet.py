@@ -24,3 +24,7 @@ class GamePacket(JsonSerializable):
         self.buffer = BytesIO(self.packet.data)
         self._unpack()
         self.buffer.close()
+
+    @classmethod
+    def factory(cls):
+        return cls()

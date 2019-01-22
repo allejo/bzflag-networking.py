@@ -42,7 +42,7 @@ class Replay(JsonSerializable):
 
             try:
                 msg_code = NetworkMessage(packet.code)
-                game_packet = GamePacketMap[msg_code]
+                game_packet = GamePacketMap[msg_code]()
                 game_packet.packet = packet
                 game_packet.build()
 

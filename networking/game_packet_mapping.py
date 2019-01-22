@@ -1,6 +1,5 @@
 from typing import Dict
 
-from networking.game_packet import GamePacket
 from networking.msg_add_player import MsgAddPlayerPacket
 from networking.msg_admin_info import MsgAdminInfoPacket
 from networking.msg_alive import MsgAlivePacket
@@ -30,32 +29,32 @@ from networking.msg_transfer_flag import MsgTransferFlagPacket
 from networking.network_message import NetworkMessage
 
 
-GamePacketMap: Dict[NetworkMessage, GamePacket] = {
-    NetworkMessage.Null: MsgNullPacket(),
-    NetworkMessage.AddPlayer: MsgAddPlayerPacket(),
-    NetworkMessage.AdminInfo: MsgAdminInfoPacket(),
-    NetworkMessage.Alive: MsgAlivePacket(),
-    NetworkMessage.CaptureFlag: MsgCaptureFlagPacket(),
-    NetworkMessage.DropFlag: MsgDropFlagPacket(),
-    NetworkMessage.GrabFlag: MsgGrabFlagPacket(),
-    NetworkMessage.FlagUpdate: MsgFlagUpdatePacket(),
-    NetworkMessage.GameTime: MsgGameTimePacket(),
-    NetworkMessage.GMUpdate: MsgGMUpdatePacket(),
-    NetworkMessage.Killed: MsgKilledPacket(),
-    NetworkMessage.Message: MsgMessagePacket(),
-    NetworkMessage.NewRabbit: MsgNewRabbitPacket(),
-    NetworkMessage.Pause: MsgPausePacket(),
-    NetworkMessage.PlayerInfo: MsgPlayerInfoPacket(),
-    NetworkMessage.PlayerUpdate: MsgPlayerUpdatePacket(),
-    NetworkMessage.PlayerUpdateSmall: MsgPlayerUpdatePacket(),
-    NetworkMessage.RemovePlayer: MsgRemovePlayerPacket(),
-    NetworkMessage.Score: MsgScorePacket(),
-    NetworkMessage.ScoreOver: MsgScoreOverPacket(),
-    NetworkMessage.SetVar: MsgSetVarPacket(),
-    NetworkMessage.ShotBegin: MsgShotBeginPacket(),
-    NetworkMessage.ShotEnd: MsgShotEndPacket(),
-    NetworkMessage.TeamUpdate: MsgTeamUpdatePacket(),
-    NetworkMessage.Teleport: MsgTeleportPacket(),
-    NetworkMessage.TimeUpdate: MsgTimeUpdatePacket(),
-    NetworkMessage.TransferFlag: MsgTransferFlagPacket(),
+GamePacketMap: Dict[NetworkMessage, callable] = {
+    NetworkMessage.Null: MsgNullPacket.factory,
+    NetworkMessage.AddPlayer: MsgAddPlayerPacket.factory,
+    NetworkMessage.AdminInfo: MsgAdminInfoPacket.factory,
+    NetworkMessage.Alive: MsgAlivePacket.factory,
+    NetworkMessage.CaptureFlag: MsgCaptureFlagPacket.factory,
+    NetworkMessage.DropFlag: MsgDropFlagPacket.factory,
+    NetworkMessage.GrabFlag: MsgGrabFlagPacket.factory,
+    NetworkMessage.FlagUpdate: MsgFlagUpdatePacket.factory,
+    NetworkMessage.GameTime: MsgGameTimePacket.factory,
+    NetworkMessage.GMUpdate: MsgGMUpdatePacket.factory,
+    NetworkMessage.Killed: MsgKilledPacket.factory,
+    NetworkMessage.Message: MsgMessagePacket.factory,
+    NetworkMessage.NewRabbit: MsgNewRabbitPacket.factory,
+    NetworkMessage.Pause: MsgPausePacket.factory,
+    NetworkMessage.PlayerInfo: MsgPlayerInfoPacket.factory,
+    NetworkMessage.PlayerUpdate: MsgPlayerUpdatePacket.factory,
+    NetworkMessage.PlayerUpdateSmall: MsgPlayerUpdatePacket.factory,
+    NetworkMessage.RemovePlayer: MsgRemovePlayerPacket.factory,
+    NetworkMessage.Score: MsgScorePacket.factory,
+    NetworkMessage.ScoreOver: MsgScoreOverPacket.factory,
+    NetworkMessage.SetVar: MsgSetVarPacket.factory,
+    NetworkMessage.ShotBegin: MsgShotBeginPacket.factory,
+    NetworkMessage.ShotEnd: MsgShotEndPacket.factory,
+    NetworkMessage.TeamUpdate: MsgTeamUpdatePacket.factory,
+    NetworkMessage.Teleport: MsgTeleportPacket.factory,
+    NetworkMessage.TimeUpdate: MsgTimeUpdatePacket.factory,
+    NetworkMessage.TransferFlag: MsgTransferFlagPacket.factory,
 }
