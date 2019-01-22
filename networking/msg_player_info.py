@@ -30,4 +30,3 @@ class MsgPlayerInfoPacket(GamePacket):
             player.is_admin = properties & IsAdmin == IsAdmin
 
             self.players.append(player)
-
