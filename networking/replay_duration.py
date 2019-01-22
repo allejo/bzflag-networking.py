@@ -7,7 +7,7 @@ class ReplayDuration(JsonSerializable):
         'hours',
         'minutes',
         'seconds',
-        'milliseconds',
+        'usecs',
     ]
 
     def __init__(self, timestamp: int):
@@ -26,4 +26,4 @@ class ReplayDuration(JsonSerializable):
         secs = secs % min_len
 
         self.seconds = int(secs)
-        self.milliseconds = int(timestamp % 1000000)
+        self.usecs = int(timestamp % 1000000)

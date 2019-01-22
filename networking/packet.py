@@ -2,6 +2,7 @@ import math
 import socket
 import struct
 
+from datetime import datetime, timezone
 from io import BytesIO, BufferedIOBase
 from typing import BinaryIO, Union, Tuple
 
@@ -48,7 +49,7 @@ class Packet(Unpackable):
         self.length = Packet.unpack_uint32(chunk)
         self.next_file_pos = Packet.unpack_uint32(chunk)
         self.prev_file_pos = Packet.unpack_uint32(chunk)
-        self.timestamp = Packet.unpack_int64(chunk)
+        self.timestamp = Packet.unpack_timestamp(chunk)
 
         if self.length > 0:
             self.data = buf.read(self.length)
@@ -225,6 +226,16 @@ class Packet(Unpackable):
             state.sounds = Packet.unpack_uint8(buf)
 
         return state
+
+    @staticmethod
+    def unpack_timestamp(buf: BinaryIO) -> datetime:
+        msb: int = Packet.unpack_uint32(buf)
+        lsb: int = Packet.unpack_uint32(buf)
+
+        ts_raw = (msb << 32) + lsb
+        ts_float = ts_raw / 1000000
+
+        return datetime.fromtimestamp(ts_float, timezone.utc)
 
     @staticmethod
     def _unpack_int(buf: Union[BinaryIO, BufferedIOBase], size: int, signed: bool = True) -> int:
