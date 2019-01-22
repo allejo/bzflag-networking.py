@@ -22,12 +22,7 @@ class MsgAddPlayerPacket(GamePacket):
         self.player_index: int = -1
         self.player_type: int = -1
         self.team_value: int = -1
-
-        self.score = PlayerScore
-        self.score.wins: int = 0
-        self.score.losses: int = 0
-        self.score.team_kills: int = 0
-
+        self.score: PlayerScore = PlayerScore()
         self.callsign: str = ''
         self.motto: str = ''
 

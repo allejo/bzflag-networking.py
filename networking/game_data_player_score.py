@@ -7,3 +7,8 @@ class PlayerScore(GameData):
         'losses',
         'team_kills',
     )
+
+    def __init__(self):
+        self.wins: int = 0
+        self.losses: int = 0
+        self.team_kills: int = 0
