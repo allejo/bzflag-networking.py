@@ -7,9 +7,9 @@ from networking.packet import Packet
 
 class GamePacket(JsonSerializable):
     __slots__ = (
+        'packet_type',
         'packet',
         'buffer',
-        'type',
     )
 
     def __init__(self):

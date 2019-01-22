@@ -1,3 +1,4 @@
+from itertools import chain
 from typing import Dict, Union
 
 
@@ -10,15 +11,16 @@ class JsonSerializable:
         if slot == 'json_ignored':
             return True
 
-        if hasattr(slot, 'json_ignored') and slot in self.json_ignored:
+        if hasattr(self, 'json_ignored') and slot in self.json_ignored:
             return True
 
         return False
 
     def to_dict(self):
         result: Dict[str, Union[list, str]] = {}
+        slots = chain.from_iterable(getattr(cls, '__slots__', []) for cls in type(self).__mro__)
 
-        for slot in self.__slots__:
+        for slot in slots:
             if self.is_json_ignored(slot):
                 continue
 

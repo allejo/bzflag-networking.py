@@ -13,7 +13,7 @@ class MsgAdminInfoPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgAdminInfo'
+        self.packet_type: str = 'MsgAdminInfo'
         self.players: List[PlayerInfo] = []
 
     def _unpack(self):

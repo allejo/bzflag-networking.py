@@ -12,7 +12,7 @@ class MsgShotEndPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type = 'MsgShotEnd'
+        self.packet_type: str = 'MsgShotEnd'
         self.player_id: int = -1
         self.shot_id: int = -1
         self.reason: int = -1

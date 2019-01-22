@@ -13,7 +13,7 @@ class MsgAlivePacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgAlive'
+        self.packet_type: str = 'MsgAlive'
         self.player_id: int = -1
         self.position: Vector3F = [0, 0, 0]
         self.azimuth: float = 0.0

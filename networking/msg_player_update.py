@@ -15,7 +15,7 @@ class MsgPlayerUpdatePacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgPlayerUpdate'
+        self.packet_type: str = 'MsgPlayerUpdate'
         self.timestamp: float = 0.0
         self.player_id: int = -1
         self.state: Optional[PlayerStateData] = None

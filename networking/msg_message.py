@@ -12,7 +12,7 @@ class MsgMessagePacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgMessage'
+        self.packet_type: str = 'MsgMessage'
         self.player_from_id: int = -1
         self.player_to_id: int = -1
         self.message: str = ''

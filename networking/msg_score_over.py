@@ -11,7 +11,7 @@ class MsgScoreOverPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgScoreOver'
+        self.packet_type: str = 'MsgScoreOver'
         self.player_id: int = -1
         self.team: int = -1
 

@@ -15,7 +15,7 @@ class MsgTransferFlagPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgTransferFlag'
+        self.packet_type: str = 'MsgTransferFlag'
         self.from_: int = -1
         self.to: int = -1
         self.flag: Optional[FlagData] = None

@@ -9,11 +9,11 @@ from networking.replay_header import ReplayHeader
 
 
 class Replay(JsonSerializable):
-    __slots__ = [
+    __slots__ = (
         'header',
         'packets',
         'errors',
-    ]
+    )
 
     def __init__(self, file: str):
         self.header: ReplayHeader = ReplayHeader()

@@ -12,7 +12,7 @@ class MsgCaptureFlagPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type = 'MsgCaptureFlag'
+        self.packet_type: str = 'MsgCaptureFlag'
         self.player_id: int = -1
         self.flag_id: int = -1
         self.team: int = -1

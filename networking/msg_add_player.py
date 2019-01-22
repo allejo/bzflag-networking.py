@@ -17,7 +17,7 @@ class MsgAddPlayerPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgAddPlayer'
+        self.packet_type: str = 'MsgAddPlayer'
 
         self.player_index: int = -1
         self.player_type: int = -1

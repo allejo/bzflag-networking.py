@@ -13,7 +13,7 @@ class MsgFlagUpdatePacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgFlagUpdate'
+        self.packet_type: str = 'MsgFlagUpdate'
         self.flags: List[FlagData] = []
 
     def _unpack(self):

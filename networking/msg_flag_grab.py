@@ -12,7 +12,7 @@ class MsgGrabFlagPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgFlagGrab'
+        self.packet_type: str = 'MsgFlagGrab'
         self.player_id: int = -1
         self.flag: FlagData = None
 

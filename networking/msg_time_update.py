@@ -10,7 +10,7 @@ class MsgTimeUpdatePacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgTimeUpdate'
+        self.packet_type: str = 'MsgTimeUpdate'
         self.time_left: int = -1
 
     def _unpack(self):

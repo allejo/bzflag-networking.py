@@ -11,7 +11,7 @@ class MsgGameTimePacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgGameTime'
+        self.packet_type: str = 'MsgGameTime'
         self.msb: int = -1
         self.lsb: int = -1
 

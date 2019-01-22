@@ -13,7 +13,7 @@ class MsgSetVarPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgSetVar'
+        self.packet_type: str = 'MsgSetVar'
         self.settings: List[BZDBSetting] = []
 
     def _unpack(self):

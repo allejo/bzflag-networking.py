@@ -5,7 +5,7 @@ class MsgNullPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type = 'MsgNull'
+        self.packet_type: str = 'MsgNull'
 
     def _unpack(self):
         pass

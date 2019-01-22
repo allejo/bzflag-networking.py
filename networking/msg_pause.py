@@ -11,7 +11,7 @@ class MsgPausePacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgPause'
+        self.packet_type: str = 'MsgPause'
         self.player_id: int = -1
         self.paused: int = -1
 

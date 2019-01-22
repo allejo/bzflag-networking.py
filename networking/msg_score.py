@@ -13,7 +13,7 @@ class MsgScorePacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgScore'
+        self.packet_type: str = 'MsgScore'
         self.scores: List[ScoreData] = []
 
     def _unpack(self):

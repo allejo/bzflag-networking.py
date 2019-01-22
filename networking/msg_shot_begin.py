@@ -13,7 +13,7 @@ class MsgShotBeginPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgShotBegin'
+        self.packet_type: str = 'MsgShotBegin'
         self.firing_info: Optional[FiringInfoData] = None
 
     def _unpack(self):

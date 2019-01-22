@@ -11,7 +11,7 @@ class MsgNewRabbitPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgNewRabbit'
+        self.packet_type: str = 'MsgNewRabbit'
         self.player_id: int = -1
         self.paused: int = -1
 

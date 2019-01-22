@@ -12,7 +12,7 @@ class MsgDropFlagPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgDropFlag'
+        self.packet_type: str = 'MsgDropFlag'
         self.player_id: int = -1
         self.flag: FlagData = None
 

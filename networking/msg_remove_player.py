@@ -10,7 +10,7 @@ class MsgRemovePlayerPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgRemovePlayer'
+        self.packet_type: str = 'MsgRemovePlayer'
         self.player_id: int = -1
 
     def _unpack(self):

@@ -14,7 +14,7 @@ class MsgGMUpdatePacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgGMUpdate'
+        self.packet_type: str = 'MsgGMUpdate'
         self.target: int = -1
         self.shot: Optional[ShotData] = None
 

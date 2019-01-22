@@ -8,7 +8,6 @@ from networking.packet import Packet
 
 class MsgKilledPacket(GamePacket):
     __slots__ = (
-        'type',
         'victim_id',
         'killer_id',
         'reason',
@@ -20,7 +19,7 @@ class MsgKilledPacket(GamePacket):
     def __init__(self):
         super().__init__()
 
-        self.type: str = 'MsgKilled'
+        self.packet_type: str = 'MsgKilled'
         self.victim_id: int = -1
         self.killer_id: int = -1
         self.reason: int = -1
