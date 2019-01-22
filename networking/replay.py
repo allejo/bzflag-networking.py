@@ -1,3 +1,4 @@
+from datetime import timedelta
 from typing import BinaryIO, List
 
 from networking.game_packet import GamePacket
@@ -11,6 +12,8 @@ from networking.replay_header import ReplayHeader
 class Replay(JsonSerializable):
     __slots__ = (
         'header',
+        'start_time',
+        'end_time',
         'packets',
         'errors',
     )
@@ -22,9 +25,19 @@ class Replay(JsonSerializable):
 
         with open(file, 'rb') as replay_file:
             self.header.unpack(replay_file)
+            self._calc_timestamps(replay_file)
             self._load_packets(replay_file)
 
-    def _load_packets(self, buf: BinaryIO):
+    def _calc_timestamps(self, buf: BinaryIO) -> None:
+        # We want to load the first packet (a null packet) so we can get its
+        # timestamp
+        packet: Packet = Packet()
+        packet.unpack(buf)
+
+        self.start_time = packet.timestamp
+        self.end_time = packet.timestamp + timedelta(microseconds=self.header.file_time)
+
+    def _load_packets(self, buf: BinaryIO) -> None:
         # We've loaded the replay header already, so let's save the current
         # starting position for the packets
         packets_start = buf.tell()

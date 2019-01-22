@@ -4,7 +4,7 @@ import struct
 
 from datetime import datetime, timezone
 from io import BytesIO, BufferedIOBase
-from typing import BinaryIO, Union, Tuple
+from typing import BinaryIO, Union, Tuple, Optional, Any
 
 from networking.game_data_firing_info import FiringInfoData
 from networking.game_data_flag import FlagData
@@ -22,7 +22,7 @@ small_max_ang_vel = 0.001 * small_scale
 
 
 class Packet(Unpackable):
-    __slots__ = [
+    __slots__ = (
         'mode',
         'code',
         'length',
@@ -30,16 +30,16 @@ class Packet(Unpackable):
         'prev_file_pos',
         'timestamp',
         'data',
-    ]
+    )
 
     def __init__(self):
-        self.mode = -1
-        self.code = -1
-        self.length = -1
-        self.next_file_pos = -1
-        self.prev_file_pos = -1
-        self.timestamp = -1
-        self.data = None
+        self.mode: int = -1
+        self.code: int = -1
+        self.length: int = -1
+        self.next_file_pos: int = -1
+        self.prev_file_pos: int = -1
+        self.timestamp: Optional[datetime] = None
+        self.data: Any = None
 
     def unpack(self, buf: BinaryIO) -> None:
         chunk = BytesIO(buf.read(32))
