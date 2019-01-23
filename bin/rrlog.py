@@ -1,7 +1,7 @@
 import json
 
-from networking.json_encoder import RRLogEncoder
-from networking.replay import Replay
+from bzflag.utilities.json_encoder import RRLogEncoder
+from bzflag.replay import Replay
 
 
 replay = Replay('20170701-1926-fun.rec')
