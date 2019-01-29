@@ -1,4 +1,4 @@
-from typing import BinaryIO
+from typing import BinaryIO, Optional
 
 from bzflag.utilities.json_serializable import JsonSerializable
 from bzflag.networking.unpackable import Unpackable
@@ -25,19 +25,19 @@ class ReplayHeader(JsonSerializable, Unpackable):
     )
 
     def __init__(self):
-        self.magic_number = -1
-        self.version = -1
-        self.offset = 0
-        self.file_time = 0
-        self.player = -1
-        self.flags_size = 0
-        self.world_size = 0
-        self.callsign = ''
-        self.motto = ''
-        self.server_version = ''
-        self.app_version = ''
-        self.real_hash = ''
-        self.length = None
+        self.magic_number: int = -1
+        self.version: int = -1
+        self.offset: int = 0
+        self.file_time: int = 0
+        self.player: int = -1
+        self.flags_size: int = 0
+        self.world_size: int = 0
+        self.callsign: str = ''
+        self.motto: str = ''
+        self.server_version: str = ''
+        self.app_version: str = ''
+        self.real_hash: str = ''
+        self.length: Optional[ReplayDuration] = None
 
     def unpack(self, buf: BinaryIO) -> None:
         self.magic_number = Packet.unpack_uint32(buf)
