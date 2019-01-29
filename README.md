@@ -1,8 +1,8 @@
 # BZFlag Networking
 
-![](https://img.shields.io/pypi/v/bzflag-networking.svg)
+[![](https://img.shields.io/pypi/v/bzflag-networking.svg)](https://pypi.org/project/bzflag-networking/)
 ![](https://img.shields.io/pypi/pyversions/bzflag-networking.svg)
-![](https://img.shields.io/github/license/allejo/bzflag-networking.py.svg)
+[![](https://img.shields.io/github/license/allejo/bzflag-networking.py.svg)](https://github.com/allejo/bzflag-networking.py/blob/master/LICENSE.md)
 
 A Python 3 package for reading and handling BZFlag network packets.
 
