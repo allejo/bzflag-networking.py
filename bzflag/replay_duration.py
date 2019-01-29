@@ -12,6 +12,11 @@ class ReplayDuration(JsonSerializable):
     ]
 
     def __init__(self, timestamp: int):
+        """
+        A developer-friendly representation of microseconds
+
+        :param timestamp: The duration of the recording in microseconds
+        """
         super().__init__()
 
         secs = timestamp / 1000000
@@ -32,4 +37,4 @@ class ReplayDuration(JsonSerializable):
         self.usecs = int(timestamp % 1000000)
 
         # Short cut for accessing this duration in seconds
-        self.as_seconds = (self.days * 24 * 60) + (self.hours * 60) + self.seconds
+        self.as_seconds = (self.days * day_len) + (self.hours * hour_len) + (self.minutes * min_len) + self.seconds
