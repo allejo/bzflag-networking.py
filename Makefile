@@ -1,5 +1,5 @@
 clean:
-	rm -r *.egg-info dist
+	rm -r *.egg-info build dist 2> /dev/null
 
 dist:
 	pip install --upgrade pip setuptools wheel; \
