@@ -13,6 +13,8 @@ class FiringInfoData(GameData):
     )
 
     def __init__(self):
+        super().__init__()
+
         self.time_sent: float = 0.0
         self.shot: Optional[ShotData] = None
         self.flag: str = ''

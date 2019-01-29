@@ -18,6 +18,8 @@ class FlagData(GameData):
     )
 
     def __init__(self):
+        super().__init__()
+
         self.index: int = -1
         self.abbv: str = ''
         self.status: int = -1

@@ -9,6 +9,8 @@ class PlayerScore(GameData):
     )
 
     def __init__(self):
+        super().__init__()
+
         self.wins: int = 0
         self.losses: int = 0
         self.team_kills: int = 0

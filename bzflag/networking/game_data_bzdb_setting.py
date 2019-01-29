@@ -6,3 +6,9 @@ class BZDBSetting(GameData):
         'name',
         'value',
     )
+
+    def __init__(self):
+        super().__init__()
+
+        self.name: str = ''
+        self.value: str = ''

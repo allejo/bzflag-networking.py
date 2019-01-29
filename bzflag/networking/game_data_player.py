@@ -14,6 +14,8 @@ class PlayerData(GameData):
     )
 
     def __init__(self):
+        super().__init__()
+
         self.player_id = -1
         self.is_registered = False
         self.is_verified = False

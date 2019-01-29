@@ -29,6 +29,8 @@ class PlayerStateData(GameData):
     )
 
     def __init__(self):
+        super().__init__()
+
         self.position: Vector3F = (0.0, 0.0, 0.0)
         self.velocity: Vector3F = (0.0, 0.0, 0.0)
         self.azimuth: float = 0.0

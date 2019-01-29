@@ -13,6 +13,8 @@ class ShotData(GameData):
     )
 
     def __init__(self):
+        super().__init__()
+
         self.player_id: int = -1
         self.shot_id: int = -1
         self.position: Vector3F = (0.0, 0.0, 0.0)

@@ -3,6 +3,7 @@ from typing import BinaryIO, List
 
 from bzflag.networking.game_packet import GamePacket
 from bzflag.networking.game_packet_mapping import GamePacketMap
+from bzflag.networking.packet_invalid_error import PacketInvalidError
 from bzflag.utilities.json_serializable import JsonSerializable
 from bzflag.networking.network_message import NetworkMessage, chars_from_code
 from bzflag.networking.packet import Packet
@@ -19,6 +20,8 @@ class Replay(JsonSerializable):
     )
 
     def __init__(self, file: str):
+        super().__init__()
+
         self.header: ReplayHeader = ReplayHeader()
         self.packets: List[GamePacket] = []
         self.errors: List[str] = []
@@ -33,6 +36,9 @@ class Replay(JsonSerializable):
         # timestamp
         packet: Packet = Packet()
         packet.unpack(buf)
+
+        if packet.timestamp is None:
+            raise PacketInvalidError
 
         self.start_time = packet.timestamp
         self.end_time = packet.timestamp + timedelta(microseconds=self.header.file_time)

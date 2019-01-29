@@ -4,7 +4,7 @@ import struct
 
 from datetime import datetime, timezone
 from io import BytesIO, BufferedIOBase
-from typing import BinaryIO, Union, Tuple, Optional, Any
+from typing import BinaryIO, Union, Tuple, Optional, Any, List
 
 from bzflag.networking.game_data_firing_info import FiringInfoData
 from bzflag.networking.game_data_flag import FlagData
@@ -194,15 +194,15 @@ class Packet(Unpackable):
             azi: int = Packet.unpack_int16(buf)
             ang_vel: int = Packet.unpack_int16(buf)
 
-            position = [0, 0, 0]
-            velocity = [0, 0, 0]
+            position: List[float] = [0, 0, 0]
+            velocity: List[float] = [0, 0, 0]
 
             for i in range(0, 3):
                 position[i] = (float(pos[i]) * small_max_dist) / small_scale
                 velocity[i] = (float(vel[i]) * small_max_vel) / small_scale
 
-            state.position = tuple(position)
-            state.velocity = tuple(velocity)
+            state.position = (position[0], position[1], position[2])
+            state.velocity = (velocity[0], velocity[1], velocity[2])
             state.azimuth = (float(azi) * math.pi) / small_scale
             state.angular_velocity = (float(ang_vel) * small_max_ang_vel) / small_scale
 

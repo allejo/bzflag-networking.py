@@ -1,5 +1,5 @@
 from itertools import chain
-from typing import Dict, Union
+from typing import Dict, Union, List
 
 
 class JsonSerializable:
@@ -7,11 +7,14 @@ class JsonSerializable:
         'json_ignored',
     )
 
+    def __init__(self):
+        self.json_ignored: List[str] = []
+
     def is_json_ignored(self, slot: str) -> bool:
         if slot == 'json_ignored':
             return True
 
-        if hasattr(self, 'json_ignored') and slot in self.json_ignored:
+        if slot in self.json_ignored:
             return True
 
         return False

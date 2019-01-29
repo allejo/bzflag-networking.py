@@ -2,6 +2,7 @@ from datetime import datetime
 from io import BytesIO
 from typing import Optional, List, Tuple
 
+from bzflag.networking.packet_not_set_error import PacketNotSetError
 from bzflag.utilities.json_serializable import JsonSerializable
 from bzflag.networking.packet import Packet
 
@@ -15,6 +16,8 @@ class GamePacket(JsonSerializable):
     )
 
     def __init__(self):
+        super().__init__()
+
         self.json_ignored: List[str] = ['buffer', 'packet']
         self.packet_type: str = ''
         self.packet: Optional[Packet] = None
@@ -25,6 +28,9 @@ class GamePacket(JsonSerializable):
         raise NotImplementedError
 
     def build(self) -> None:
+        if self.packet is None:
+            raise PacketNotSetError
+
         self.buffer = BytesIO(self.packet.data)
         self._unpack()
         self.buffer.close()
@@ -36,6 +42,12 @@ class GamePacket(JsonSerializable):
 
         :return: A tuple with the following values: hours, minutes, seconds
         """
+        if self.packet is None:
+            raise PacketNotSetError
+
+        if self.timestamp_offset is None or self.packet.timestamp is None:
+            return -1, -1, -1
+
         delta = self.timestamp_offset - self.packet.timestamp
 
         return delta.seconds // 3600, delta.seconds // 60, delta.seconds % 60

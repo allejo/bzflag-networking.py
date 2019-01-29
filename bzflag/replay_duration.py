@@ -12,6 +12,8 @@ class ReplayDuration(JsonSerializable):
     ]
 
     def __init__(self, timestamp: int):
+        super().__init__()
+
         secs = timestamp / 1000000
 
         day_len = 24 * 60 * 60

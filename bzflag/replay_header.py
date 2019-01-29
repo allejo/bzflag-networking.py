@@ -25,6 +25,8 @@ class ReplayHeader(JsonSerializable, Unpackable):
     )
 
     def __init__(self):
+        super().__init__()
+
         self.magic_number: int = -1
         self.version: int = -1
         self.offset: int = 0

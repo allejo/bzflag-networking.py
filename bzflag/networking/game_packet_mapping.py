@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Callable, Dict
 
 from bzflag.networking.msg_add_player import MsgAddPlayerPacket
 from bzflag.networking.msg_admin_info import MsgAdminInfoPacket
@@ -29,7 +29,7 @@ from bzflag.networking.msg_transfer_flag import MsgTransferFlagPacket
 from bzflag.networking.network_message import NetworkMessage
 
 
-GamePacketMap: Dict[NetworkMessage, callable] = {
+GamePacketMap: Dict[NetworkMessage, Callable] = {
     NetworkMessage.Null: MsgNullPacket.factory,
     NetworkMessage.AddPlayer: MsgAddPlayerPacket.factory,
     NetworkMessage.AdminInfo: MsgAdminInfoPacket.factory,

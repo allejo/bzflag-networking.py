@@ -6,3 +6,9 @@ class PlayerInfo(GameData):
         'player_index',
         'ip_address',
     )
+
+    def __init__(self):
+        super().__init__()
+
+        self.player_index: int = -1
+        self.ip_address: str = ''
