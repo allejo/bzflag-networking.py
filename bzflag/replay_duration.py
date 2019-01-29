@@ -3,6 +3,7 @@ from bzflag.utilities.json_serializable import JsonSerializable
 
 class ReplayDuration(JsonSerializable):
     __slots__ = [
+        'as_seconds',
         'days',
         'hours',
         'minutes',
@@ -27,3 +28,6 @@ class ReplayDuration(JsonSerializable):
 
         self.seconds = int(secs)
         self.usecs = int(timestamp % 1000000)
+
+        # Short cut for accessing this duration in seconds
+        self.as_seconds = (self.days * 24 * 60) + (self.hours * 60) + self.seconds
