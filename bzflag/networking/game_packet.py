@@ -18,7 +18,7 @@ class GamePacket(JsonSerializable):
     def __init__(self):
         super().__init__()
 
-        self.json_ignored: List[str] = ['buffer', 'packet']
+        self.json_ignored: List[str] = ['buffer', 'packet', 'timestamp_offset']
         self.packet_type: str = ''
         self.packet: Optional[Packet] = None
         self.buffer: Optional[BytesIO] = None
