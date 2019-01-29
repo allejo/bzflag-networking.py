@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='bzflag-networking',
-    version='1.0.0',
+    version='1.0.1',
     author='Vladimir "allejo" Jimenez',
     author_email='me@allejo.io',
     description='A Python library for reading and unpacking BZFlag network packets',
