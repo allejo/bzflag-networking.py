@@ -12,7 +12,7 @@ class RRLogEncoder(json.JSONEncoder):
 
     def default(self, obj):
         if not isinstance(obj, JsonSerializable):
-            return {}
+            return str(obj)
 
         if len(RRLogEncoder.white_list) > 0:
             if isinstance(obj, GamePacket) and obj.packet_type not in RRLogEncoder.white_list:
