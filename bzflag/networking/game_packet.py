@@ -12,6 +12,7 @@ class GamePacket(JsonSerializable):
         'packet_type',
         'packet',
         'buffer',
+        'timestamp',
         'timestamp_offset',
     )
 
@@ -22,6 +23,7 @@ class GamePacket(JsonSerializable):
         self.packet_type: str = ''
         self.packet: Optional[Packet] = None
         self.buffer: Optional[BytesIO] = None
+        self.timestamp: Optional[datetime] = None
         self.timestamp_offset: Optional[datetime] = None
 
     def _unpack(self) -> None:
@@ -34,6 +36,8 @@ class GamePacket(JsonSerializable):
         self.buffer = BytesIO(self.packet.data)
         self._unpack()
         self.buffer.close()
+
+        self.timestamp = self.packet.timestamp
 
     def get_countdown_time(self) -> Tuple[int, int, int]:
         """

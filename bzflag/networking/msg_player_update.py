@@ -7,7 +7,6 @@ from bzflag.networking.packet import Packet
 
 class MsgPlayerUpdatePacket(GamePacket):
     __slots__ = (
-        'timestamp',
         'player_id',
         'state',
     )
@@ -16,11 +15,13 @@ class MsgPlayerUpdatePacket(GamePacket):
         super().__init__()
 
         self.packet_type: str = 'MsgPlayerUpdate'
-        self.timestamp: float = 0.0
         self.player_id: int = -1
         self.state: Optional[PlayerStateData] = None
 
     def _unpack(self):
-        self.timestamp = Packet.unpack_float(self.buffer)
+        # Discard this value; I'm not sure why this value comes out to a weird
+        # float. We have the timestamp of the raw packet, so just that instead
+        _ = Packet.unpack_float(self.buffer)
+
         self.player_id = Packet.unpack_uint8(self.buffer)
         self.state = Packet.unpack_player_state(self.buffer, self.packet.code)
