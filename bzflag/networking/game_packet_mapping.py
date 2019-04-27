@@ -4,8 +4,8 @@ from bzflag.networking.msg_add_player import MsgAddPlayerPacket
 from bzflag.networking.msg_admin_info import MsgAdminInfoPacket
 from bzflag.networking.msg_alive import MsgAlivePacket
 from bzflag.networking.msg_capture_flag import MsgCaptureFlagPacket
-from bzflag.networking.msg_drop_flag import MsgDropFlagPacket
-from bzflag.networking.msg_flag_grab import MsgGrabFlagPacket
+from bzflag.networking.msg_flag_drop import MsgFlagDropPacket
+from bzflag.networking.msg_flag_grab import MsgFlagGrabPacket
 from bzflag.networking.msg_flag_update import MsgFlagUpdatePacket
 from bzflag.networking.msg_game_time import MsgGameTimePacket
 from bzflag.networking.msg_gm_update import MsgGMUpdatePacket
@@ -35,8 +35,8 @@ GamePacketMap: Dict[NetworkMessage, Callable] = {
     NetworkMessage.AdminInfo: MsgAdminInfoPacket.factory,
     NetworkMessage.Alive: MsgAlivePacket.factory,
     NetworkMessage.CaptureFlag: MsgCaptureFlagPacket.factory,
-    NetworkMessage.DropFlag: MsgDropFlagPacket.factory,
-    NetworkMessage.GrabFlag: MsgGrabFlagPacket.factory,
+    NetworkMessage.DropFlag: MsgFlagDropPacket.factory,
+    NetworkMessage.GrabFlag: MsgFlagGrabPacket.factory,
     NetworkMessage.FlagUpdate: MsgFlagUpdatePacket.factory,
     NetworkMessage.GameTime: MsgGameTimePacket.factory,
     NetworkMessage.GMUpdate: MsgGMUpdatePacket.factory,

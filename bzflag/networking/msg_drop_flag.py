@@ -1,21 +1,9 @@
-from bzflag.networking.game_data_flag import FlagData
-from bzflag.networking.game_packet import GamePacket
-from bzflag.networking.packet import Packet
+import warnings
+
+from bzflag.networking.msg_flag_drop import MsgFlagDropPacket
 
 
-class MsgDropFlagPacket(GamePacket):
-    __slots__ = (
-        'player_id',
-        'flag',
-    )
+class MsgDropFlagPacket(MsgFlagDropPacket):
+    warnings.warn("use the `MsgFlagDropPacket` class now", DeprecationWarning)
 
-    def __init__(self):
-        super().__init__()
-
-        self.packet_type: str = 'MsgDropFlag'
-        self.player_id: int = -1
-        self.flag: FlagData = None
-
-    def _unpack(self):
-        self.player_id = Packet.unpack_uint8(self.buffer)
-        self.flag = Packet.unpack_flag(self.buffer)
+    pass
